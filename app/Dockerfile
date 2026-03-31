@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # install python dependencies inside the container (installs flask)
-RUN pip install -r requirements.txt
+RUN pip install flask
 
 # copy app.py from host machine into the container's /app directory
 COPY app.py .

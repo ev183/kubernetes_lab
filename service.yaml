@@ -1,12 +1,20 @@
+# version of the Kubernetes API to use
 apiVersion: v1
+# type of Kubernetes resource we're creating
 kind: Service
 metadata:
+  # name of the service, referenced by other resources
   name: flask-service
 spec:
+  # NodePort exposes the service on a static port on the node, accessible from outside the cluster
   type: NodePort
+  # routes traffic to pods with this label — matches the labels in deployment.yaml
   selector:
     app: flask-app
   ports:
+      # port the service listens on inside the cluster
     - port: 80
+      # port the Flask app is actually running on inside the container
       targetPort: 5000
+      # port exposed on the node itself — what you hit when you curl localhost:30080
       nodePort: 30080
